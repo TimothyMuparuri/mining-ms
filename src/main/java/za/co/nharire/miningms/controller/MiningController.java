@@ -84,8 +84,6 @@ public class MiningController {
         } else {
             return new ResponseEntity<>(mine1, HttpStatus.NOT_FOUND);
         }
-
-
     }
 
 }
