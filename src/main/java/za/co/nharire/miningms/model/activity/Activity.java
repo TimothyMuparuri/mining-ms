@@ -1,4 +1,4 @@
-package za.co.nharire.miningms.model.operation;
+package za.co.nharire.miningms.model.activity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,17 +13,16 @@ public class Activity {
     @Id
     @Column(name = "activityid")
     private Long activityID;
-    @Column(name = "employeeid")
-    private Long employeeID;
     @Column(name = "activityname")
     private String activityName;
-    @Column(name = "equipment")
-    private Long equipmentID;
     @Column(name = "startdate")
     private String startDate;
     @Column(name = "enddate")
     private String endDate;
     @Column(name = "description")
     private String description;
+    @Column(name = "mileage")
+    private Long mileage;
+
 
 }

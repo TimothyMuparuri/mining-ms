@@ -1,4 +1,4 @@
-package za.co.nharire.miningms.model.operation;
+package za.co.nharire.miningms.model.activity;
 
 import lombok.Data;
 

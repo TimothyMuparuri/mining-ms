@@ -5,13 +5,21 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import za.co.nharire.miningms.constants.ApiConstants;
+import za.co.nharire.miningms.model.activity.Activity;
+import za.co.nharire.miningms.model.activity.ActivityDTO;
 import za.co.nharire.miningms.model.humanresources.HumanResources;
 import za.co.nharire.miningms.model.humanresources.HumanResourcesDTO;
 import za.co.nharire.miningms.model.logbook.Logbook;
 import za.co.nharire.miningms.model.logbook.LogbookDTO;
 import za.co.nharire.miningms.model.logbook.LogbookDeleteDTO;
-import za.co.nharire.miningms.ropositories.human_resources.HumanResourcesRepository;
+import za.co.nharire.miningms.model.schedule.Schedule;
+import za.co.nharire.miningms.model.schedule.ScheduleDTO;
+import za.co.nharire.miningms.model.vehicle.currentstate.CurrentStateDTO;
+import za.co.nharire.miningms.ropositories.activity.ActivityRepository;
+import za.co.nharire.miningms.ropositories.currentstate.CurrentStateRepository;
+import za.co.nharire.miningms.ropositories.humanresources.HumanResourcesRepository;
 import za.co.nharire.miningms.ropositories.logbook.LogbookRepository;
+import za.co.nharire.miningms.ropositories.schedule.ScheduleRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,24 +29,50 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class LogbookService {
+    private final CurrentStateRepository currentStateRepository;
     private final LogbookRepository logbookRepository;
     private final HumanResourcesRepository humanResourcesRepository;
     private final HumanResourcesService humanResourcesService;
-
+    private final ScheduleService scheduleService;
+    private final ScheduleRepository scheduleRepository;
+    private final CurrentStateService currentStateService;
+    private final ActivityRepository activityRepository;
 
     public LogbookDTO saveLogbook(LogbookDTO logbookDTO) {
         HumanResourcesDTO humanResourcesDTO = new HumanResourcesDTO();
+        CurrentStateDTO currentState1 = new CurrentStateDTO();
+        ScheduleDTO scheduleDTO = new ScheduleDTO();
         Logbook logbook = new Logbook();
         BeanUtils.copyProperties(logbookDTO, logbook);
 
+        ActivityDTO activityDTO = new ActivityDTO();
+
+        Optional<Activity> activity = activityRepository.findById(logbookDTO.getActivityID());
+        BeanUtils.copyProperties(activity.get(),activityDTO);
+
         Optional<HumanResources> humanResources = humanResourcesRepository.findById(logbookDTO.getEmployeeID());
+        Optional<Schedule> schedule = scheduleRepository.findById(logbookDTO.getActivityID());
+
         BeanUtils.copyProperties(humanResources.get(), humanResourcesDTO);
+        BeanUtils.copyProperties(logbookDTO, currentState1);
+        BeanUtils.copyProperties(schedule.get(), scheduleDTO);
 
         humanResourcesDTO.setIsActive(false);
+        scheduleDTO.setIsDone(true);
+        currentState1.setRequiresMaintenance(true);
+
         log.info("Save to db");
         Logbook logbook1 = logbookRepository.save(logbook);
+        scheduleService.saveSchedule(scheduleDTO);
         humanResourcesService.saveHumanResource(humanResourcesDTO);
+
         BeanUtils.copyProperties(logbook1, logbookDTO);
+
+        Long currentStateID = currentState1.getCurrentStateID() + 1;
+        currentState1.setCurrentStateID(currentStateID);
+        currentState1.setMileage(activityDTO.getMileage());
+
+        currentStateService.saveCurrentState(currentState1);
 
         return logbookDTO;
     }
@@ -83,7 +117,6 @@ public class LogbookService {
         } else {
 
             Logbook logbook1 = logbook.get();
-            logbook1.setIsActive(logbookDetails.getIsActive());
             logbookRepository.save(logbook1);
             BeanUtils.copyProperties(logbook.get(), logbookDTO);
             return logbookDTO;

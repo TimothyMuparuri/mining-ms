@@ -6,7 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import za.co.nharire.miningms.model.humanresources.HumanResources;
 import za.co.nharire.miningms.model.humanresources.HumanResourcesDTO;
-import za.co.nharire.miningms.ropositories.human_resources.HumanResourcesRepository;
+import za.co.nharire.miningms.ropositories.humanresources.HumanResourcesRepository;
 
 import java.util.ArrayList;
 import java.util.List;
