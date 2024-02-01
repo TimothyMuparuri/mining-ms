@@ -34,9 +34,9 @@ public class MaintenanceService {
     private final VehicleRepository vehicleRepository;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long maintenanceID = 1L;
+    Long maintenanceID = 0L;
 
-    @Scheduled(fixedRate = 50000)
+    @Scheduled(fixedRate = 2628002880L)
     public void saveMaintenance() {
 
         log.info("The time is now {}", dateFormat.format(new Date()));

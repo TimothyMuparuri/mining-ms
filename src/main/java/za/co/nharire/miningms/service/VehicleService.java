@@ -4,10 +4,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import za.co.nharire.miningms.constants.ApiConstants;
 import za.co.nharire.miningms.model.specification.SpecificationDTO;
 import za.co.nharire.miningms.model.vehicle.properties.Vehicle;
 import za.co.nharire.miningms.model.vehicle.properties.VehicleDTO;
+import za.co.nharire.miningms.model.vehicle.properties.VehicleDeleteDTO;
 import za.co.nharire.miningms.ropositories.vehicle.VehicleRepository;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -32,5 +38,70 @@ public class VehicleService {
 
         BeanUtils.copyProperties(vehicle1,vehicleDTO);
         return vehicleDTO;
+    }
+
+    public List<VehicleDTO> getAllVehicles() {
+        log.info("IN SERVICE ");
+
+        List<VehicleDTO> vehicleDTOList = new ArrayList<>();
+
+        List<Vehicle> vehicleList = vehicleRepository.findAll();
+        for (Vehicle vehicle : vehicleList) {
+            VehicleDTO vehicleDTO = new VehicleDTO();
+            BeanUtils.copyProperties(vehicle, vehicleDTO);
+            vehicleDTOList.add(vehicleDTO);
+        }
+        return vehicleDTOList;
+    }
+
+    // get vehicle by id rest api
+    public VehicleDTO getVehicleById(Long vehicleid) {
+        log.info("IN SERVICE ");
+        VehicleDTO vehicleDTO = new VehicleDTO();
+        Optional<Vehicle> vehicle = vehicleRepository.findById(vehicleid);
+
+        if (vehicle.isEmpty()) {
+            return null;
+        } else {
+            BeanUtils.copyProperties(vehicle.get(), vehicleDTO);
+            return vehicleDTO;
+        }
+    }
+
+    // updating the Db
+    public VehicleDTO updateVehicle(Long vehicleid, VehicleDTO vehicleDetails) {
+        log.info("IN SERVICE ");
+        VehicleDTO vehicleDTO = new VehicleDTO();
+        Optional<Vehicle> vehicle = vehicleRepository.findById(vehicleid);
+
+        if (vehicle.isEmpty()) {
+            return null;
+        } else {
+
+            Vehicle vehicle1 = vehicle.get();
+            vehicle1.setMileage(vehicleDetails.getMileage());
+            vehicleRepository.save(vehicle1);
+            BeanUtils.copyProperties(vehicle.get(), vehicleDTO);
+            return vehicleDTO;
+        }
+
+    }
+
+    public VehicleDeleteDTO deleteVehicle(Long vehicleid) {
+        log.info("IN SERVICE ");
+
+        VehicleDeleteDTO vehicleDeleteDTO = new VehicleDeleteDTO();
+
+        Optional<Vehicle> vehicle = vehicleRepository.findById(vehicleid);
+        if (vehicle.isEmpty()) {
+            log.error(" No ID found for this ID " + vehicleid);
+
+            vehicleDeleteDTO.setMessage(ApiConstants.DELETE_FAILURE + vehicleid);
+            return vehicleDeleteDTO;
+        } else {
+            vehicleRepository.deleteById(vehicleid);
+        }
+        vehicleDeleteDTO.setMessage(ApiConstants.DELETE_SUCCESS);
+        return vehicleDeleteDTO;
     }
 }

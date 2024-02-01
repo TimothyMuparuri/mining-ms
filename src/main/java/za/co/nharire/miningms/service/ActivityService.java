@@ -10,13 +10,10 @@ import za.co.nharire.miningms.model.activity.ActivityRequirementDTO;
 import za.co.nharire.miningms.model.humanresources.HumanResources;
 import za.co.nharire.miningms.model.humanresources.HumanResourcesDTO;
 import za.co.nharire.miningms.model.schedule.ScheduleDTO;
-import za.co.nharire.miningms.model.vehicle.currentstate.CurrentStateDTO;
 import za.co.nharire.miningms.model.vehicle.properties.Vehicle;
 import za.co.nharire.miningms.model.vehicle.properties.VehicleDTO;
 import za.co.nharire.miningms.ropositories.activity.ActivityRepository;
-import za.co.nharire.miningms.ropositories.currentstate.CurrentStateRepository;
 import za.co.nharire.miningms.ropositories.humanresources.HumanResourcesRepository;
-import za.co.nharire.miningms.ropositories.schedule.ScheduleRepository;
 import za.co.nharire.miningms.ropositories.vehicle.VehicleRepository;
 
 import java.util.ArrayList;

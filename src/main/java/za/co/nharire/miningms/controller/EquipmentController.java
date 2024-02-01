@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class EquipmentController {
+public class  EquipmentController {
 
     private final EquipmentService equipmentService;
 
