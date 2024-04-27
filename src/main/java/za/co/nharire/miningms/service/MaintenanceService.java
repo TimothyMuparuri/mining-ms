@@ -30,7 +30,6 @@ public class MaintenanceService {
     private static final Logger log = LoggerFactory.getLogger(MaintenanceService.class);
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     private final MaintenanceRepository maintenanceRepository;
-    private final CurrentStateService currentStateService;
     private final VehicleRepository vehicleRepository;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,7 +60,6 @@ public class MaintenanceService {
         for (VehicleDTO vehicleDTO : putVehicleList) {
 
             log.info(" Save to DB");
-
             maintenance.setMaintenanceID(maintenanceID);
             maintenance.setDescription("periodic maintenance");
             maintenance.setDuration("50 seconds");
@@ -70,8 +68,6 @@ public class MaintenanceService {
             maintenanceID++;
             maintenanceRepository.save(maintenance);
 
-
         }
-
     }
 }
