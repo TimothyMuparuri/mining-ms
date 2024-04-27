@@ -6,7 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import za.co.nharire.miningms.model.activity.ActivityRequirement;
 import za.co.nharire.miningms.model.activity.ActivityRequirementDTO;
-import za.co.nharire.miningms.ropositories.activityrequirements.ActivityRequirementRepository;
+import za.co.nharire.miningms.repositories.activityrequirements.ActivityRequirementRepository;
 
 @Slf4j
 @RequiredArgsConstructor

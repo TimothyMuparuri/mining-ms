@@ -3,12 +3,13 @@ package za.co.nharire.miningms.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.co.nharire.miningms.constants.ApiConstants;
 import za.co.nharire.miningms.model.mining.Mine;
 import za.co.nharire.miningms.model.mining.MineDTO;
 import za.co.nharire.miningms.model.mining.MineDeleteDTO;
-import za.co.nharire.miningms.ropositories.mining.MiningRepository;
+import za.co.nharire.miningms.repositories.mining.MiningRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 public class MiningService {
-
 
     private final MiningRepository miningRepository;
 

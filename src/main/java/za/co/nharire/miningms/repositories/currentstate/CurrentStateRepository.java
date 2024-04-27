@@ -1,7 +1,6 @@
-package za.co.nharire.miningms.ropositories.currentstate;
+package za.co.nharire.miningms.repositories.currentstate;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import za.co.nharire.miningms.model.vehicle.currentstate.CurrentState;
 

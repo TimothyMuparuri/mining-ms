@@ -1,4 +1,4 @@
-package za.co.nharire.miningms.ropositories.vehicle;
+package za.co.nharire.miningms.repositories.vehicle;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

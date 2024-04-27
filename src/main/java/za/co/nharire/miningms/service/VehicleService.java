@@ -9,7 +9,7 @@ import za.co.nharire.miningms.model.specification.SpecificationDTO;
 import za.co.nharire.miningms.model.vehicle.properties.Vehicle;
 import za.co.nharire.miningms.model.vehicle.properties.VehicleDTO;
 import za.co.nharire.miningms.model.vehicle.properties.VehicleDeleteDTO;
-import za.co.nharire.miningms.ropositories.vehicle.VehicleRepository;
+import za.co.nharire.miningms.repositories.vehicle.VehicleRepository;
 
 import java.util.ArrayList;
 import java.util.List;

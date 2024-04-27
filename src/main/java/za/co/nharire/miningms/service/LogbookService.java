@@ -15,11 +15,11 @@ import za.co.nharire.miningms.model.logbook.LogbookDeleteDTO;
 import za.co.nharire.miningms.model.schedule.Schedule;
 import za.co.nharire.miningms.model.schedule.ScheduleDTO;
 import za.co.nharire.miningms.model.vehicle.currentstate.CurrentStateDTO;
-import za.co.nharire.miningms.ropositories.activity.ActivityRepository;
-import za.co.nharire.miningms.ropositories.currentstate.CurrentStateRepository;
-import za.co.nharire.miningms.ropositories.humanresources.HumanResourcesRepository;
-import za.co.nharire.miningms.ropositories.logbook.LogbookRepository;
-import za.co.nharire.miningms.ropositories.schedule.ScheduleRepository;
+import za.co.nharire.miningms.repositories.activity.ActivityRepository;
+import za.co.nharire.miningms.repositories.currentstate.CurrentStateRepository;
+import za.co.nharire.miningms.repositories.humanresources.HumanResourcesRepository;
+import za.co.nharire.miningms.repositories.logbook.LogbookRepository;
+import za.co.nharire.miningms.repositories.schedule.ScheduleRepository;
 
 import java.util.ArrayList;
 import java.util.List;

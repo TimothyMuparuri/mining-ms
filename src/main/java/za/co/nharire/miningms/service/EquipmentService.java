@@ -9,8 +9,8 @@ import za.co.nharire.miningms.model.equipment.Equipment;
 import za.co.nharire.miningms.model.equipment.EquipmentDTO;
 import za.co.nharire.miningms.model.equipment.EquipmentDeleteDTO;
 import za.co.nharire.miningms.model.mining.Mine;
-import za.co.nharire.miningms.ropositories.equipment.EquipmentRepository;
-import za.co.nharire.miningms.ropositories.mining.MiningRepository;
+import za.co.nharire.miningms.repositories.equipment.EquipmentRepository;
+import za.co.nharire.miningms.repositories.mining.MiningRepository;
 
 import java.util.ArrayList;
 import java.util.List;

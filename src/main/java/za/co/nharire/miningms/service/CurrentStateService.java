@@ -6,7 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import za.co.nharire.miningms.model.vehicle.currentstate.CurrentState;
 import za.co.nharire.miningms.model.vehicle.currentstate.CurrentStateDTO;
-import za.co.nharire.miningms.ropositories.currentstate.CurrentStateRepository;
+import za.co.nharire.miningms.repositories.currentstate.CurrentStateRepository;
 @Slf4j
 @RequiredArgsConstructor
 @Service

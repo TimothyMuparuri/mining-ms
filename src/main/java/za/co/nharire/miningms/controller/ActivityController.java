@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import za.co.nharire.miningms.constants.ApiConstants;
 import za.co.nharire.miningms.model.activity.ActivityDTO;
 import za.co.nharire.miningms.model.activity.ActivityDeleteDTO;
-import za.co.nharire.miningms.model.vehicle.properties.VehicleDTO;
-import za.co.nharire.miningms.model.vehicle.properties.VehicleDeleteDTO;
 import za.co.nharire.miningms.service.ActivityService;
 
 import java.util.List;
@@ -37,8 +35,8 @@ public class ActivityController {
 
     //get all activities
     @GetMapping("activity/all")
-    public ResponseEntity<List<ActivityDTO>> getAllEquipment() {
-        log.info("GETTING ALL EQUIPMENT IN DB ");
+    public ResponseEntity<List<ActivityDTO>> getAllActivity() {
+        log.info("GETTING ALL ACTIVITY IN DB ");
 
         List<ActivityDTO> activityDTOList = activityService.getAllActivities();
 
@@ -49,11 +47,11 @@ public class ActivityController {
         }
     }
 
-    //Getting a vehicle by vehicleid
+    //Getting activity by activityID
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/activity/get/{activityid}")
     public ResponseEntity<ActivityDTO> getActivityById(@PathVariable Long activityId) {
-        log.info("GETTING A VEHICLE IN DB ");
+        log.info("GETTING A ACTIVITY IN DB ");
 
         ActivityDTO activityDTO = activityService.getActivityById(activityId);
 
@@ -68,7 +66,7 @@ public class ActivityController {
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/activity/update/{activityid}")
     public ResponseEntity<ActivityDTO> updateActivity(@PathVariable Long activityID, @RequestBody ActivityDTO activityDTO) {
-        log.info("UPDATING A VEHICLE IN DB ");
+        log.info("UPDATING A ACTIVITY IN DB ");
 
         ActivityDTO activityDTO1 = activityService.updateActivity(activityID, activityDTO);
 
@@ -83,7 +81,7 @@ public class ActivityController {
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/activity/delete/{activityid}")
     public ResponseEntity<ActivityDeleteDTO> deleteActivity(@PathVariable Long activityID) {
-        log.info("DELETING A VEHICLE IN DB ");
+        log.info("DELETING A ACTIVITY IN DB ");
 
         ActivityDeleteDTO activity = activityService.deleteActivity(activityID);
 

@@ -24,5 +24,4 @@ public class Activity {
     @Column(name = "mileage")
     private Long mileage;
 
-
 }

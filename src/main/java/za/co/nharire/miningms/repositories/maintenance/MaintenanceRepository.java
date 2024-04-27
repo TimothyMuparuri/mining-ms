@@ -1,4 +1,4 @@
-package za.co.nharire.miningms.ropositories.maintenance;
+package za.co.nharire.miningms.repositories.maintenance;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
