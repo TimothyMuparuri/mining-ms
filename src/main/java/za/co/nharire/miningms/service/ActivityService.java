@@ -4,14 +4,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import za.co.nharire.miningms.constants.ApiConstants;
 import za.co.nharire.miningms.model.activity.Activity;
 import za.co.nharire.miningms.model.activity.ActivityDTO;
+import za.co.nharire.miningms.model.activity.ActivityDeleteDTO;
 import za.co.nharire.miningms.model.activity.ActivityRequirementDTO;
 import za.co.nharire.miningms.model.humanresources.HumanResources;
 import za.co.nharire.miningms.model.humanresources.HumanResourcesDTO;
 import za.co.nharire.miningms.model.schedule.ScheduleDTO;
 import za.co.nharire.miningms.model.vehicle.properties.Vehicle;
 import za.co.nharire.miningms.model.vehicle.properties.VehicleDTO;
+import za.co.nharire.miningms.model.vehicle.properties.VehicleDeleteDTO;
 import za.co.nharire.miningms.ropositories.activity.ActivityRepository;
 import za.co.nharire.miningms.ropositories.humanresources.HumanResourcesRepository;
 import za.co.nharire.miningms.ropositories.vehicle.VehicleRepository;
@@ -150,9 +153,31 @@ public class ActivityService {
 
             Activity activity1 = activity.get();
             activity1.setActivityName(activityDetails.getActivityName());
+            activity1.setMileage(activityDetails.getMileage());
+            activity1.setDescription(activityDetails.getDescription());
+            activity1.setEndDate(activityDetails.getEndDate());
+            activity1.setStartDate(activityDTO.getStartDate());
             BeanUtils.copyProperties(activity.get(), activityDTO);
             return activityDTO;
         }
 
+    }
+
+    public ActivityDeleteDTO deleteActivity(Long activityID) {
+        log.info("IN SERVICE ");
+
+        ActivityDeleteDTO activityDeleteDTO = new ActivityDeleteDTO();
+
+        Optional<Activity> activity = activityRepository.findById(activityID);
+        if (activity.isEmpty()) {
+            log.error(" No ID found for this ID " + activityID);
+
+            activityDeleteDTO.setMessage(ApiConstants.DELETE_FAILURE + activityID);
+            return activityDeleteDTO;
+        } else {
+            vehicleRepository.deleteById(activityID);
+        }
+        activityDeleteDTO.setMessage(ApiConstants.DELETE_SUCCESS);
+        return activityDeleteDTO;
     }
 }

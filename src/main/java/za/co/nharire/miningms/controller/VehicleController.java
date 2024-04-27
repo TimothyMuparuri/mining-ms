@@ -35,9 +35,9 @@ public class VehicleController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:5500")
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/vehicle/all")
-    public ResponseEntity<List<VehicleDTO>> getAllMines() {
+    public ResponseEntity<List<VehicleDTO>> getAllVehicle() {
         log.info("GETTING ALL VEHICLES IN DB ");
 
         List<VehicleDTO> vehicleList = vehicleService.getAllVehicles();
@@ -50,6 +50,7 @@ public class VehicleController {
     }
 
     //Getting a vehicle by vehicleid
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/vehicle/get/{vehicleid}")
     public ResponseEntity<VehicleDTO> getVehicleById(@PathVariable Long vehicleid) {
         log.info("GETTING A VEHICLE IN DB ");
@@ -63,6 +64,7 @@ public class VehicleController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/vehicle/update/{vehicleid}")
     public ResponseEntity<VehicleDTO> updateVehicle(@PathVariable Long vehicleid, @RequestBody VehicleDTO vehicleDTOName) {
         log.info("UPDATING A VEHICLE IN DB ");
@@ -76,6 +78,7 @@ public class VehicleController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/vehicle/delete/{vehicleid}")
     public ResponseEntity<VehicleDeleteDTO> deleteVehicle(@PathVariable Long vehicleid) {
         log.info("DELETING A VEHICLE IN DB ");

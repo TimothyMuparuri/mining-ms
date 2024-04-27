@@ -80,6 +80,11 @@ public class VehicleService {
 
             Vehicle vehicle1 = vehicle.get();
             vehicle1.setMileage(vehicleDetails.getMileage());
+            vehicle1.setMake(vehicleDetails.getMake());
+            vehicle1.setColour(vehicleDetails.getColour());
+            vehicle1.setYear(vehicleDetails.getYear());
+            vehicle1.setEngineNumber(vehicleDetails.getEngineNumber());
+            vehicle1.setModel(vehicleDetails.getModel());
             vehicleRepository.save(vehicle1);
             BeanUtils.copyProperties(vehicle.get(), vehicleDTO);
             return vehicleDTO;
