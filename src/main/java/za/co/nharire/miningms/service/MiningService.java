@@ -78,6 +78,11 @@ public class MiningService {
 
             Mine mine1 = mine.get();
             mine1.setMineName(mineDetails.getMineName());
+            mine1.setStatus(mineDetails.getStatus());
+            mine1.setLocation(mineDetails.getLocation());
+            mine1.setMineral(mineDetails.getMineral());
+            mine1.setReservesInTonnes(mineDetails.getReservesInTonnes());
+            mine1.setState(mineDetails.getState());
             miningRepository.save(mine1);
             BeanUtils.copyProperties(mine.get(), mineDTO);
             return mineDTO;
