@@ -22,7 +22,7 @@ public class MiningController {
     @PostMapping("mine/save")
     public ResponseEntity<MineDTO> saveMine(@RequestBody MineDTO mine) {
 
-        log.info("SAVING MINE", mine.toString());
+        log.info("SAVING MINE 247358", mine.toString());
 
         MineDTO mine1 = miningService.saveMine(mine);
         if (mine1 != null) {
